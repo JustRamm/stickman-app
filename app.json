@@ -1,0 +1,30 @@
+{
+    "expo": {
+        "name": "Sickman",
+        "slug": "sickman-game",
+        "version": "1.0.0",
+        "orientation": "landscape",
+        "icon": "./public/logo.svg",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./public/logo.svg",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./public/logo.svg",
+                "backgroundColor": "#ffffff"
+            }
+        },
+        "web": {
+            "favicon": "./public/logo.svg"
+        }
+    }
+}

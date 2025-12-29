@@ -1,0 +1,929 @@
+{
+    "tutorial": {
+        "startNode": "intro",
+        "nodes": {
+            "intro": {
+                "npc_text": "Hello! I'm Alex. Welcome to Gatekeeper Training. Our goal is simple: learn how to support someone in crisis and guide them to safety. Ready?",
+                "npc_emotion": "happy",
+                "options": [
+                    {
+                        "text": "Yes, Alex. Show me the ropes.",
+                        "next": "ui_lesson",
+                        "trust_impact": 10,
+                        "inner_thought": "Build rapport by acknowledging the guide."
+                    }
+                ]
+            },
+            "ui_lesson": {
+                "npc_text": "First, look at the top bar. That's Empathy. Helpful, validating responses increase it; dismissive ones decrease it. If it gets too low, people will close off.",
+                "npc_emotion": "neutral",
+                "options": [
+                    {
+                        "text": "What about the icons in the top right corner?",
+                        "next": "minigames_intro",
+                        "trust_impact": 5,
+                        "inner_thought": "Curiosity about the UI."
+                    }
+                ]
+            },
+            "minigames_intro": {
+                "npc_text": "Those are your training modules! 🎓 is 'Fact vs Myth' to test your knowledge, and 🛡️ is 'Referral Battle' where you practice matching crises to the right Indian helplines like DISHA or KIRAN.",
+                "npc_emotion": "happy",
+                "options": [
+                    {
+                        "text": "Got it. How do I move around and interact with things?",
+                        "next": "movement_lesson",
+                        "trust_impact": 10,
+                        "inner_thought": "Asking about mechanics."
+                    }
+                ]
+            },
+            "movement_lesson": {
+                "npc_text": "Use the A/D keys (or arrows) to walk. When you see something suspicious, press 'Z' to investigate. Finding clues unlocks special responses marked with a 🔍.",
+                "npc_emotion": "neutral",
+                "options": [
+                    {
+                        "text": "And if I need to leave or restart a scenario?",
+                        "next": "exit_lesson",
+                        "trust_impact": 5,
+                        "inner_thought": "Safety first: knowing how to exit."
+                    }
+                ]
+            },
+            "exit_lesson": {
+                "npc_text": "Simple! The 'Exit to Title' button is always in the top-left during level selection. Inside mini-games, there's always an 'Exit' or 'Abort' button in the same spot.",
+                "npc_emotion": "neutral",
+                "options": [
+                    {
+                        "text": "Ready to finish this training. What's the final step?",
+                        "next": "refer_lesson",
+                        "trust_impact": 10,
+                        "inner_thought": "Final tutorial step."
+                    }
+                ]
+            },
+            "refer_lesson": {
+                "npc_text": "Final step: Referral. Once you've built trust, open your Toolkit (the briefcase icon) and select a resource like 'KIRAN Helpline' to help me get professional support.",
+                "npc_emotion": "neutral",
+                "required_resource": "hotline",
+                "options": [
+                    {
+                        "text": "I'm referring you to the KIRAN Helpline for professional support, Alex.",
+                        "next": "success_tutorial",
+                        "trust_impact": 20,
+                        "inner_thought": "Practice actual referral."
+                    }
+                ]
+            },
+            "success_tutorial": {
+                "isEnd": true,
+                "result": "success",
+                "message": "Tutorial Complete! You've mastered the controls, discovered the mini-games, and learned how to refer. Alex is safe. You're ready for the Park mission.",
+                "npc_emotion": "relief"
+            }
+        }
+    },
+    "park": {
+        "startNode": "beginning",
+        "nodes": {
+            "beginning": {
+                "npc_text": "It's so quiet here at dusk. I used to come here with my late husband... now it just feels empty.",
+                "npc_emotion": "sad",
+                "options": [
+                    {
+                        "text": "You sound like you're missing him a lot tonight, Grace.",
+                        "next": "opening_up",
+                        "trust_impact": 10,
+                        "inner_thought": "Validate her loss and use her name."
+                    },
+                    {
+                        "text": "Are you okay? You shouldn't be out here alone.",
+                        "next": "defensive",
+                        "trust_impact": -5,
+                        "inner_thought": "A bit too parental/controlling."
+                    },
+                    {
+                        "text": "I saw that photo... you both looked so happy then.",
+                        "next": "opening_up_clue",
+                        "trust_impact": 35,
+                        "required_clue": "family_photo",
+                        "inner_thought": "Use the visual clue to deepen the connection."
+                    }
+                ]
+            },
+            "opening_up_clue": {
+                "npc_text": "Fifty years. We survived everything together. Now, I'm just a burden to my children. They're better off with their own lives.",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "Grace, children don't see their parents as burdens. They see love. Tell me more about that feeling.",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Challenge the 'burden' narrative gently."
+                    },
+                    {
+                        "text": "It sounds like you feel you've become a chore for them lately. Is that what's weighing on you?",
+                        "next": "deep_pain",
+                        "trust_impact": 10,
+                        "inner_thought": "Reflect her feeling of being a burden."
+                    }
+                ]
+            },
+            "opening_up": {
+                "npc_text": "When you reach my age, you start to feel like a ghost in your own life. My kids are busy, my friends are gone...",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "It sounds like the loneliness has become overwhelming. Is that right?",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Name the emotion: Loneliness."
+                    },
+                    {
+                        "text": "The silence in your house must feel very loud some days. I'm here to listen.",
+                        "next": "deep_pain",
+                        "trust_impact": 10,
+                        "inner_thought": "Acknowledge the silence and isolation."
+                    },
+                    {
+                        "text": "You still have plenty of time! Enjoy the sunset.",
+                        "next": "toxic_positivity",
+                        "trust_impact": -10,
+                        "inner_thought": "Toxic positivity minimizes her deep pain."
+                    }
+                ]
+            },
+            "deep_pain": {
+                "npc_text": "I've started giving away my jewelry. I just don't see the point in waking up tomorrow. Life is just... finished.",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "Grace, when you say you don't see the point in waking up, are you thinking about suicide?",
+                        "next": "direct_question",
+                        "trust_impact": 20,
+                        "inner_thought": "The Direct Question: Essential QPR step."
+                    },
+                    {
+                        "text": "It sounds like you've been making preparations to leave. Are you thinking of ending your life?",
+                        "next": "direct_question",
+                        "trust_impact": 15,
+                        "inner_thought": "Identify the warning sign: giving away possessions."
+                    },
+                    {
+                        "text": "Don't say that. You have so much to live for!",
+                        "next": "defensive",
+                        "trust_impact": -15,
+                        "inner_thought": "Avoid arguing or dismissing her reality."
+                    }
+                ]
+            },
+            "direct_question": {
+                "npc_text": "I... I have my old medication saved up. I was thinking of just falling asleep and not bothering anyone else ever again.",
+                "npc_emotion": "distressed",
+                "text_effect": "shake",
+                "options": [
+                    {
+                        "text": "I'm so glad you told me. I want to help you stay safe tonight. Will you let me connect you with someone who can help?",
+                        "next": "persuade",
+                        "trust_impact": 20,
+                        "inner_thought": "Persuade her to stay safe."
+                    },
+                    {
+                        "text": "Grace, I care about you, and I'm very concerned for your safety. Can we talk about some options for help?",
+                        "next": "persuade",
+                        "trust_impact": 15,
+                        "inner_thought": "Express care and move toward persuasion."
+                    }
+                ]
+            },
+            "persuade": {
+                "npc_text": "I don't even know if there's help for someone my age. Who would care?",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "I care, and I know there are people who specialize in helping seniors through exactly this. Will you let me connect you?",
+                        "next": "referral_ready",
+                        "trust_impact": 15,
+                        "inner_thought": "Address the fear of being forgotten or irrelevant."
+                    },
+                    {
+                        "text": "Loneliness is heavy at any age, but you don't have to carry it alone. Can we try calling for some support?",
+                        "next": "referral_ready",
+                        "trust_impact": 10,
+                        "inner_thought": "Validate her loneliness and offer connection."
+                    }
+                ]
+            },
+            "referral_ready": {
+                "npc_text": "I... I'm a bit scared, but maybe you're right. Tell me what I need to do.",
+                "npc_emotion": "vulnerable",
+                "required_resource": "hotline",
+                "options": [
+                    {
+                        "text": "We're going to call the Lifeline together. I'll stay right here with you the whole time.",
+                        "next": "success_end",
+                        "trust_impact": 25,
+                        "inner_thought": "Final referral with accompaniment."
+                    }
+                ]
+            },
+            "toxic_positivity": {
+                "npc_text": "Sunset... it just marks another day of silence. You don't understand.",
+                "npc_emotion": "closed_off",
+                "options": [
+                    {
+                        "text": "I'm sorry, Grace. I was just trying to help, but I realize I should have listened instead. Please, tell me more.",
+                        "next": "deep_pain",
+                        "trust_impact": 10,
+                        "inner_thought": "Apologize and pivot back to listening."
+                    },
+                    {
+                        "text": "You're right, I don't fully understand, but I want to. What does that silence feel like?",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Acknowledge error and ask for deeper understanding."
+                    }
+                ]
+            },
+            "defensive": {
+                "npc_text": "You're just a stranger. Leave an old woman to her peace.",
+                "npc_emotion": "closed_off",
+                "options": [
+                    {
+                        "text": "I'll respect your space, but I'm worried about you. I'll stay nearby for a bit.",
+                        "next": "leave_failure",
+                        "trust_impact": -50,
+                        "inner_thought": "Leaving someone in immediate crisis is a failure."
+                    }
+                ]
+            },
+            "success_end": {
+                "isEnd": true,
+                "result": "success",
+                "message": "Grace agreed to call the elderly support line. Name: Grace. Status: Connected to Help.",
+                "npc_emotion": "relief"
+            },
+            "leave_failure": {
+                "isEnd": true,
+                "result": "failure",
+                "message": "You left Grace alone in a high-risk situation.",
+                "npc_emotion": "sad"
+            }
+        }
+    },
+    "office": {
+        "startNode": "beginning",
+        "nodes": {
+            "beginning": {
+                "npc_text": "Fifteen years in this office. Now I'm just a liability on a spreadsheet. Replaced by an algorithm.",
+                "npc_emotion": "distressed",
+                "options": [
+                    {
+                        "text": "That sounds incredibly dehumanizing, David. How are you holding up?",
+                        "next": "opening_up",
+                        "trust_impact": 10,
+                        "inner_thought": "Validate his anger and use his name."
+                    },
+                    {
+                        "text": "I saw your termination letter. It's a tough break.",
+                        "next": "opening_up_clue",
+                        "trust_impact": 35,
+                        "required_clue": "termination_letter",
+                        "inner_thought": "Leverage discovered clue."
+                    },
+                    {
+                        "text": "Well, the market is changing. Adapt or die, right?",
+                        "next": "toxic_positivity",
+                        "trust_impact": -20,
+                        "inner_thought": "Extremely insensitive and aggressive."
+                    }
+                ]
+            },
+            "opening_up_clue": {
+                "npc_text": "I'm 45. Too old to start over, too young to retire. My life insurance is the only thing I have left that's actually worth anything.",
+                "npc_emotion": "sad",
+                "options": [
+                    {
+                        "text": "David, the value of your life isn't measured in a policy payout. Let's talk about why you feel that way.",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Challenge the dangerous financial logic."
+                    },
+                    {
+                        "text": "At 45, you should have been better prepared for a layoff. This is just how corporate life works.",
+                        "next": "toxic_positivity",
+                        "trust_impact": -25,
+                        "inner_thought": "Blaming the victim during a crisis."
+                    }
+                ]
+            },
+            "opening_up": {
+                "npc_text": "They gave me a cardboard box and ten minutes. My ID badge doesn't even work anymore. I'm nothing without this place.",
+                "npc_emotion": "sad",
+                "options": [
+                    {
+                        "text": "It sounds like you've lost your sense of identity along with the job. How are you processing this?",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Reflect his loss of identity."
+                    },
+                    {
+                        "text": "It's just a job, David. You're overreacting to a routine downsizing. Everyone goes through this.",
+                        "next": "toxic_positivity",
+                        "trust_impact": -20,
+                        "inner_thought": "Minimizing his pain and identity loss."
+                    }
+                ]
+            },
+            "deep_pain": {
+                "npc_text": "I was looking at the policy fine print. If I go now, my family stays in the house. If I stay, we lose it all. It's simple math.",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "When you talk about the policy payout, are you saying you're planning to kill yourself?",
+                        "next": "direct_question",
+                        "trust_impact": 20,
+                        "inner_thought": "Direct Question about suicide."
+                    },
+                    {
+                        "text": "That's a very selfish way to look at it. Have you even thought about the trauma you'd leave behind?",
+                        "next": "toxic_positivity",
+                        "trust_impact": -30,
+                        "inner_thought": "Shaming the person for their ideation."
+                    }
+                ]
+            },
+            "direct_question": {
+                "npc_text": "I've been planning the 'accident' all night. Just a slip on the platform or a mistake in the garage... it would look clean.",
+                "npc_emotion": "distressed",
+                "text_effect": "shake",
+                "options": [
+                    {
+                        "text": "David, no house is worth your life. Your family needs you, not the money. Let's find another way together.",
+                        "next": "persuade",
+                        "trust_impact": 20,
+                        "inner_thought": "Persuade him to rethink the 'math'."
+                    },
+                    {
+                        "text": "Don't do anything stupid, David. You're just tired. Go home and get some sleep, you'll feel better.",
+                        "next": "defensive",
+                        "trust_impact": -40,
+                        "inner_thought": "Dismissive and dangerous advice during active planning."
+                    }
+                ]
+            },
+            "persuade": {
+                "npc_text": "I just don't know where to go. I can't walk back into that lobby and ask for a therapist.",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "You don't have to go back in there. We can find help right here, privately. Would you be willing to talk to someone right now?",
+                        "next": "referral_ready",
+                        "trust_impact": 15,
+                        "inner_thought": "Respect his need for privacy and immediate action."
+                    },
+                    {
+                        "text": "Maybe you're right. Maybe a therapist is too much right now. Why don't you just try taking a vacation?",
+                        "next": "defensive",
+                        "trust_impact": -25,
+                        "inner_thought": "Avoiding the necessary referral and suggesting 'escape' instead of help."
+                    }
+                ]
+            },
+            "referral_ready": {
+                "npc_text": "I... I can't think straight. If you know someone who can help... I'll listen. What's the plan?",
+                "npc_emotion": "vulnerable",
+                "required_resource": "hotline",
+                "options": [
+                    {
+                        "text": "We're going to call the Tele MANAS (14416). It's confidential and they know how to help in situations just like this.",
+                        "next": "success_end",
+                        "trust_impact": 25,
+                        "inner_thought": "Final referral step."
+                    }
+                ]
+            },
+            "toxic_positivity": {
+                "npc_text": "Adapt? I have a mortgage and two kids in college! You have no idea what's at stake.",
+                "npc_emotion": "closed_off",
+                "options": [
+                    {
+                        "text": "I'm sorry, David. I was totally out of line. Please help me understand what you're facing.",
+                        "next": "deep_pain",
+                        "trust_impact": 10,
+                        "inner_thought": "Apologize and ask for understanding."
+                    },
+                    {
+                        "text": "You're right, I don't know what it's like. I spoke without thinking. Can we start over?",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Humble admission of error."
+                    }
+                ]
+            },
+            "defensive": {
+                "npc_text": "Just go. I have 'math' to finish.",
+                "npc_emotion": "closed_off",
+                "options": [
+                    {
+                        "text": "I'll go for now, but I'm checking back in later. Please stay safe.",
+                        "next": "leave_failure",
+                        "trust_impact": -50,
+                        "inner_thought": "Failure: Leaving during planning phase."
+                    }
+                ]
+            },
+            "success_end": {
+                "isEnd": true,
+                "result": "success",
+                "message": "David agreed to speak with a financial crisis counselor. Name: David. Status: Safe.",
+                "npc_emotion": "relief"
+            },
+            "leave_failure": {
+                "isEnd": true,
+                "result": "failure",
+                "message": "You left David while he was planning his death.",
+                "npc_emotion": "sad"
+            }
+        }
+    },
+    "campus": {
+        "startNode": "beginning",
+        "nodes": {
+            "beginning": {
+                "npc_text": "I was recruited for my speed, not my brain. Now I'm failing both. I'm a joke to the team and my family.",
+                "npc_emotion": "sad",
+                "options": [
+                    {
+                        "text": "It sounds like you're carrying the weight of everyone's expectations, Jessica.",
+                        "next": "opening_up",
+                        "trust_impact": 10,
+                        "inner_thought": "Acknowledge the pressure of expectations."
+                    },
+                    {
+                        "text": "I saw that grade paper... 'F' is just a letter, not your whole story.",
+                        "next": "opening_up_clue",
+                        "trust_impact": 35,
+                        "required_clue": "failing_grade",
+                        "inner_thought": "Use the grade clue to open the dialogue."
+                    },
+                    {
+                        "text": "Just work harder! Winners never quit!",
+                        "next": "toxic_positivity",
+                        "trust_impact": -15,
+                        "inner_thought": "Sports clichés don't help internal crisis."
+                    }
+                ]
+            },
+            "opening_up_clue": {
+                "npc_text": "If I lose my GPA, I lose the scholarship. If I lose that, I'm out. My parents worked three jobs to get me here. I'm failing them.",
+                "npc_emotion": "distressed",
+                "options": [
+                    {
+                        "text": "Jessica, your parents love the daughter, not the athlete. You're more than your stats.",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Attempt to decouple identity from performance."
+                    },
+                    {
+                        "text": "The pressure of carrying your family's hopes must be exhausting. Let's talk more about that.",
+                        "next": "deep_pain",
+                        "trust_impact": 10,
+                        "inner_thought": "Reflect the exhaustion of pressure."
+                    }
+                ]
+            },
+            "opening_up": {
+                "npc_text": "My knee is blown, my grades are crashing... I'm a broken machine. And broken machines get thrown away.",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "You feel like you've lost your utility and value. That sounds incredibly lonely.",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Reflect the feeling of being used/discarded."
+                    },
+                    {
+                        "text": "Jessica, you're a person, not a machine. It's okay to be 'broken' for a while.",
+                        "next": "deep_pain",
+                        "trust_impact": 10,
+                        "inner_thought": "Rehumanize her."
+                    }
+                ]
+            },
+            "deep_pain": {
+                "npc_text": "I've been looking at the bridge tonight. It's the only place where I don't have to be 'Jessica the Star' or 'Jessica the Failure'. I can just be nothing.",
+                "npc_emotion": "sad",
+                "options": [
+                    {
+                        "text": "When you say you want to be 'nothing' at the bridge, are you thinking about suicide?",
+                        "next": "direct_question",
+                        "trust_impact": 20,
+                        "inner_thought": "Direct Suicide Inquiry."
+                    },
+                    {
+                        "text": "It sounds like you just want to escape the constant labels. Are you thinking of ending your life?",
+                        "next": "direct_question",
+                        "trust_impact": 15,
+                        "inner_thought": "Reflect her need for escape while asking directly."
+                    },
+                    {
+                        "text": "You just need a good night's sleep.",
+                        "next": "defensive",
+                        "trust_impact": -15,
+                        "inner_thought": "Minimizing serious suicidal ideation."
+                    }
+                ]
+            },
+            "direct_question": {
+                "npc_text": "I... I've already walked there twice this week. I just stand there and wonder if the fall would be as fast as my 100m sprint.",
+                "npc_emotion": "distressed",
+                "text_effect": "shake",
+                "options": [
+                    {
+                        "text": "I'm so glad you shared that with me. It takes real strength to admit that. I want to help you find a safer path. Will you come with me to talk to someone?",
+                        "next": "persuade",
+                        "trust_impact": 20,
+                        "inner_thought": "Validating and Persuading."
+                    },
+                    {
+                        "text": "Jessica, I hear how much you're suffering. You don't have to face the bridge or these expectations alone. Can we talk about help?",
+                        "next": "persuade",
+                        "trust_impact": 15,
+                        "inner_thought": "Express care and move toward persuasion."
+                    }
+                ]
+            },
+            "persuade": {
+                "npc_text": "What if the coach finds out? They'll pull me from the roster.",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "Your safety is more important than any roster. The counselor is confidential—the team doesn't have to know anything. Will you come with me?",
+                        "next": "referral_ready",
+                        "trust_impact": 15,
+                        "inner_thought": "Prioritize health over sports status."
+                    },
+                    {
+                        "text": "Whatever happens on the field, I'm more worried about YOU. Let's go talk to someone who can help carry this load.",
+                        "next": "referral_ready",
+                        "trust_impact": 10,
+                        "inner_thought": "Show care for her as a person."
+                    }
+                ]
+            },
+            "referral_ready": {
+                "npc_text": "Everyone always wants something from me. But you... you actually seem to care. Okay. Where do we go?",
+                "npc_emotion": "vulnerable",
+                "required_resource": "counselor",
+                "options": [
+                    {
+                        "text": "Let's head to the School Counselor's office together. I'll walk with you all the way.",
+                        "next": "success_end",
+                        "trust_impact": 25,
+                        "inner_thought": "Final active referral."
+                    }
+                ]
+            },
+            "toxic_positivity": {
+                "npc_text": "Quit? I've already quit in my head! You don't get the pressure.",
+                "npc_emotion": "closed_off",
+                "options": [
+                    {
+                        "text": "I'm sorry, I was speaking in clichés. I can see you're suffering. I'm here now, and I'm listening.",
+                        "next": "deep_pain",
+                        "trust_impact": 10,
+                        "inner_thought": "Admit the mistake and offer presence."
+                    },
+                    {
+                        "text": "You're right, I don't know the pressure you're under. Help me understand what it's like for you.",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Acknowledge lack of understanding and offer presence."
+                    }
+                ]
+            },
+            "defensive": {
+                "npc_text": "Leave me. I'm just a joke anyway.",
+                "npc_emotion": "closed_off",
+                "options": [
+                    {
+                        "text": "I'll leave you for a moment if you wish, but I'm checking back in later. You're not a joke to me.",
+                        "next": "leave_failure",
+                        "trust_impact": -50,
+                        "inner_thought": "Failure."
+                    }
+                ]
+            },
+            "success_end": {
+                "isEnd": true,
+                "result": "success",
+                "message": "Jessica agreed to visit the university health center center. Name: Jessica. Status: Seeking Help.",
+                "npc_emotion": "relief"
+            },
+            "leave_failure": {
+                "isEnd": true,
+                "result": "failure",
+                "message": "You left Jessica alone at her lowest point.",
+                "npc_emotion": "sad"
+            }
+        }
+    },
+    "rainy_street": {
+        "startNode": "beginning",
+        "nodes": {
+            "beginning": {
+                "npc_text": "The rain is so loud... it's the only thing that drowns out the thoughts. I've lost everything. I have nothing left in this city.",
+                "npc_emotion": "distressed",
+                "options": [
+                    {
+                        "text": "The city can feel like a very cold place when you're suffering alone, Raj.",
+                        "next": "opening_up",
+                        "trust_impact": 10,
+                        "inner_thought": "Empathize with his isolation."
+                    },
+                    {
+                        "text": "I found this eviction notice. It must be devastating to face this.",
+                        "next": "opening_up_clue",
+                        "trust_impact": 35,
+                        "required_clue": "wet_envelope",
+                        "inner_thought": "Use the clue to show you see his pain."
+                    },
+                    {
+                        "text": "Don't jump! Life is a gift!",
+                        "next": "defensive",
+                        "trust_impact": -20,
+                        "inner_thought": "Extremely unhelpful and presumptive."
+                    }
+                ]
+            },
+            "opening_up_clue": {
+                "npc_text": "Three jobs, no sleep, and it still wasn't enough to keep a roof over my head. My wife left because I couldn't provide. I'm a failure as a man and a person.",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "Raj, being a person isn't about productivity or providing. You're suffering, and that doesn't make you a failure.",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Challenge the self-labeling."
+                    },
+                    {
+                        "text": "It sounds like you feel you've let everyone down. That's a heavy burden to carry alone in this rain.",
+                        "next": "deep_pain",
+                        "trust_impact": 10,
+                        "inner_thought": "Reflect his deep sense of failure and isolation."
+                    }
+                ]
+            },
+            "opening_up": {
+                "npc_text": "I just want the noise to stop. The bills, the yelling, the silence... I just want it to be quiet for once.",
+                "npc_emotion": "sad",
+                "options": [
+                    {
+                        "text": "It sounds like you're exhausted from the constant struggle for survival. Is that right?",
+                        "next": "deep_pain",
+                        "trust_impact": 15,
+                        "inner_thought": "Label his exhaustion."
+                    },
+                    {
+                        "text": "The noise of all those pressures must be deafening. I'm here now, and I'm listening.",
+                        "next": "deep_pain",
+                        "trust_impact": 10,
+                        "inner_thought": "Acknowledge the overwhelming pressure."
+                    }
+                ]
+            },
+            "deep_pain": {
+                "npc_text": "One step into the traffic. That's all it takes. Then it's finally, finally quiet.",
+                "npc_emotion": "distressed",
+                "options": [
+                    {
+                        "text": "Raj, are you planning to step into the traffic tonight to end your life?",
+                        "next": "direct_question",
+                        "trust_impact": 20,
+                        "inner_thought": "Direct Question."
+                    },
+                    {
+                        "text": "It sounds like you're seeing the street as an escape from the pain. Are you thinking of suicide?",
+                        "next": "direct_question",
+                        "trust_impact": 15,
+                        "inner_thought": "Direct question with reflection."
+                    },
+                    {
+                        "text": "Think of your family! They wouldn't want this.",
+                        "next": "defensive",
+                        "trust_impact": -20,
+                        "inner_thought": "Guilt-tripping can increase risk."
+                    }
+                ]
+            },
+            "direct_question": {
+                "npc_text": "I was just waiting for the next bus. I don't want to hurt anyone, I just want out. I'm so, so tired.",
+                "npc_emotion": "distressed",
+                "text_effect": "shake",
+                "options": [
+                    {
+                        "text": "I hear how tired you are. I'm here now, and I won't leave you. Let's call someone who can help us find a safe place for you tonight.",
+                        "next": "persuade",
+                        "trust_impact": 20,
+                        "inner_thought": "Offer immediate presence and safety."
+                    },
+                    {
+                        "text": "Raj, you don't have to face this exhaustion alone. We can reach out for help together. What do you say?",
+                        "next": "persuade",
+                        "trust_impact": 15,
+                        "inner_thought": "Offer connection and hope."
+                    }
+                ]
+            },
+            "persuade": {
+                "npc_text": "I have no money for a hospital. No one helps the homeless.",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "The help I'm talking about is free, Raj. We can call 14416 right now and they can help find you a safe place. Will you let me help you call?",
+                        "next": "referral_ready",
+                        "trust_impact": 15,
+                        "inner_thought": "Remove the barrier of cost."
+                    },
+                    {
+                        "text": "I won't let you face this alone in the dark. There ARE people who care. Let's reach out together and see what we can find.",
+                        "next": "referral_ready",
+                        "trust_impact": 10,
+                        "inner_thought": "Provide hope and presence."
+                    }
+                ]
+            },
+            "referral_ready": {
+                "npc_text": "I... I'm so cold. If there's really a place... I'll listen. What do we do?",
+                "npc_emotion": "vulnerable",
+                "required_resource": "hotline",
+                "options": [
+                    {
+                        "text": "We're calling the Tele MANAS (14416). They'll help us find a safe shelter and support for tonight.",
+                        "next": "success_end",
+                        "trust_impact": 25,
+                        "inner_thought": "Final referral and action."
+                    }
+                ]
+            },
+            "defensive": {
+                "npc_text": "You're just another voice in the noise. Go away.",
+                "npc_emotion": "closed_off",
+                "options": [
+                    {
+                        "text": "I'll go for now, but I'm checking back in later. Please, just stay safe.",
+                        "next": "leave_failure",
+                        "trust_impact": -50,
+                        "inner_thought": "Failure."
+                    }
+                ]
+            },
+            "success_end": {
+                "isEnd": true,
+                "result": "success",
+                "message": "Raj has put down his heavy burden for tonight. Because of your listening, he's agreed to meet a crisis worker at a safe shelter. Status: Safe and Heard.",
+                "npc_emotion": "relief"
+            },
+            "leave_failure": {
+                "isEnd": true,
+                "result": "failure",
+                "message": "You left Raj on the edge of the street.",
+                "npc_emotion": "sad"
+            }
+        }
+    },
+    "bridge": {
+        "startNode": "beginning",
+        "nodes": {
+            "beginning": {
+                "npc_text": "Don't come any closer. The water looks so much more inviting than the world behind me.",
+                "npc_emotion": "distressed",
+                "options": [
+                    {
+                        "text": "I'm just here to listen. It sounds like you've been through a lot to feel this way.",
+                        "next": "opening_up",
+                        "trust_impact": 10,
+                        "inner_thought": "Offer presence without pressure."
+                    },
+                    {
+                        "text": "It's a long way down. Why are you standing so close to the edge?",
+                        "next": "deep_pain",
+                        "trust_impact": 5,
+                        "inner_thought": "Direct but gentle inquiry."
+                    },
+                    {
+                        "text": "Get down from there! You're making a mistake!",
+                        "next": "defensive",
+                        "trust_impact": -40,
+                        "inner_thought": "Aggressive commands increase danger."
+                    }
+                ]
+            },
+            "opening_up": {
+                "npc_text": "Everyone I ever loved is gone, or I've pushed them away. I'm just a shadow now.",
+                "npc_emotion": "sad",
+                "options": [
+                    {
+                        "text": "The weight of that loneliness must feel like lead. Are you thinking about ending your life tonight?",
+                        "next": "direct_question",
+                        "trust_impact": 20,
+                        "inner_thought": "Bridge to the direct question."
+                    },
+                    {
+                        "text": "It sounds like you feel there's nothing left connecting you to this world. Is that right?",
+                        "next": "deep_pain",
+                        "trust_impact": 10,
+                        "inner_thought": "Reflect his total disconnection."
+                    }
+                ]
+            },
+            "deep_pain": {
+                "npc_text": "I've settled everything. My dog is with a neighbor. My keys are in the mailbox. There’s nothing left to do but this.",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "When you say you've settled everything, are you telling me you're planning to jump and end your life?",
+                        "next": "direct_question",
+                        "trust_impact": 25,
+                        "inner_thought": "Essential Direct Question."
+                    },
+                    {
+                        "text": "What about your neighbor? They'll be devastated when they realize why you left the dog.",
+                        "next": "defensive",
+                        "trust_impact": -20,
+                        "inner_thought": "Guilt-tripping can backfire in high-risk moments."
+                    }
+                ]
+            },
+            "direct_question": {
+                "npc_text": "I was just waiting for the rain to get a little harder. I... I don't want to die, I just can't live like this anymore.",
+                "npc_emotion": "distressed",
+                "text_effect": "shake",
+                "options": [
+                    {
+                        "text": "I hear you. You want the pain to stop, not your life. Let's work together to find a way to stop the pain safely. Will you let me help?",
+                        "next": "persuade",
+                        "trust_impact": 20,
+                        "inner_thought": "Distinguish between wanting to die and wanting the pain to end."
+                    }
+                ]
+            },
+            "persuade": {
+                "npc_text": "I've tried therapy. I've tried meds. Nothing works. Why would a hotline be any different?",
+                "npc_emotion": "vulnerable",
+                "options": [
+                    {
+                        "text": "A hotline isn't like therapy. It's a 'safety bridge'—an immediate way to stop the pain for just one night. Will you try it with me?",
+                        "next": "referral_ready",
+                        "trust_impact": 15,
+                        "inner_thought": "The hotline as a temporary, immediate safety measures."
+                    },
+                    {
+                        "text": "I can't promise it will fix everything, but I can promise they will listen without judging. Shall we give them a chance?",
+                        "next": "referral_ready",
+                        "trust_impact": 10,
+                        "inner_thought": "Offer a non-judgmental space."
+                    }
+                ]
+            },
+            "referral_ready": {
+                "npc_text": "I... I suppose I've got nothing left to lose. If you think it'll help, tell me what to do.",
+                "npc_emotion": "vulnerable",
+                "required_resource": "hotline",
+                "options": [
+                    {
+                        "text": "We're going to call the KIRAN Helpline. I'll stay right here by your side while we talk to them.",
+                        "next": "success_end",
+                        "trust_impact": 25,
+                        "inner_thought": "The final step: Active referral with accompaniment."
+                    }
+                ]
+            },
+            "defensive": {
+                "npc_text": "You're just wasting your time. Just like I've wasted mine.",
+                "npc_emotion": "closed_off",
+                "options": [
+                    {
+                        "text": "I'm staying right here. You're not a waste of time to me.",
+                        "next": "leave_failure",
+                        "trust_impact": -60,
+                        "inner_thought": "High stake failure: Active planning."
+                    }
+                ]
+            },
+            "success_end": {
+                "isEnd": true,
+                "result": "success",
+                "message": "The stranger agreed to step back from the edge and talk to a professional. Name: Stranger. Status: Connected to Help.",
+                "npc_emotion": "relief"
+            },
+            "leave_failure": {
+                "isEnd": true,
+                "result": "failure",
+                "message": "You were unable to build enough trust to bring the stranger back from the edge.",
+                "npc_emotion": "sad"
+            }
+        }
+    }
+}
